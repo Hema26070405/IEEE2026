@@ -7,7 +7,7 @@ function Achievements() {
     
       <main className="p-8 flex-1">
         <h2 className="text-2xl font-semibold">
-         Achievements
+          Achievements
         </h2>
       </main>
       
