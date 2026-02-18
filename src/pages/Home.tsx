@@ -1,19 +1,22 @@
-
+// import AboutSection from "../components/AboutSection";
+// import EventsSection from "../components/EventsSection";
+// import JoinIEEE from "../components/JoinIEEE";
+// import LandingHero from "../components/LandingHero";
+// import SVCSection from "../components/SVCSection";
+// import SocietiesSection from "../components/SocietiesSection";
+// import VisionMission from "../components/VisionMission";
 
 function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      
-      <main className="p-8 flex-1">
-        <h2 className="text-2xl font-semibold">
-         Add your components here
-        </h2>
-      </main>
-       
-</div>
-
-  
-
+    <div className="min-h-screen bg-white">
+      {/* <LandingHero />
+      <AboutSection />
+      <SocietiesSection />
+      <SVCSection />
+      <EventsSection />
+      <VisionMission />
+      <JoinIEEE /> */}
+    </div>
   );
 }
 
