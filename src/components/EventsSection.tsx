@@ -13,7 +13,7 @@ const events: IEEEEvent[] = [
     id: "ieee-tech-summit",
     title: "IEEE Technical Summit 2026",
     description: "Keynotes and technical tracks on AI systems and smart engineering.",
-    date: "March 12, 2026",
+    date: "March 12, 2025",
     image:
       "https://images.unsplash.com/photo-1540575467063-178f50002c4b?w=900&h=550&fit=crop",
   },

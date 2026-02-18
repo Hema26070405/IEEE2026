@@ -9,6 +9,7 @@
 function Home() {
   return (
     <div className="min-h-screen bg-white">
+      <p>Home page</p>
       {/* <LandingHero />
       <AboutSection />
       <SocietiesSection />

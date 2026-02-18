@@ -62,7 +62,7 @@ const AchievementsCardGrid: React.FC = () => {
   return (
     <section className="mx-auto max-w-7xl px-6 py-4 ">
       <h2 className="mb-12 text-center text-3xl font-bold text-cyan-700">
-        Previous Events
+        Previous year Events
       </h2>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4  ">
