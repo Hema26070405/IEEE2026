@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Navbar />  {/* ← Add Navbar so you can navigate */}
-        <main className="pt-20">  {/* Space for fixed navbar */}
+        <main className="pt-5">  {/* Space for fixed navbar */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

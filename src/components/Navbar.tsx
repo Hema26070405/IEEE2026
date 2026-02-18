@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo1 from "../assets/svcelogo2.jpg";
+import logo1 from "../assets/svce-logo.png";
 import logo2 from "../assets/ieeelogo.jpg";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <nav className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-lg text-white px-6 py-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-lg text-white px-6 py-3">
+ <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="bg-transparent flex flex-row sm:flex-row items-center gap-2">
           <img src={logo1} alt="SVC Logo" className="bg-transparent h-5 w-auto sm:h-9" />
