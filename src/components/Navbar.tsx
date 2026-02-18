@@ -1,29 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo1 from "../assets/svcelogo2.jpg";
 import logo2 from "../assets/ieeelogo.jpg";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Execom', path: '/execom' },
+    { name: 'Events', path: '/events' },
+    { name: 'Achievements', path: '/achievements' },
+    { name: 'Magazine', path: '/magazine' },
+    { name: 'Contact', path: '/contact' }
+  ];
 
   return (
-    <nav className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-lg text-white px-6 py-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      scrolled 
+        ? 'bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-2xl' 
+        : 'bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-lg'
+    }`}>
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
-        <div className="bg-transparent flex flex-row sm:flex-row items-center gap-2">
-          <img src={logo1} alt="SVC Logo" className="bg-transparent h-5 w-auto sm:h-9" />
-          <img src={logo2} alt="IEEE Logo" className="bg-transparent h-5 w-auto sm:h-9" />
-        </div>
+        <Link to="/" className="flex flex-row items-center gap-2 hover:opacity-80 transition-opacity duration-300">
+          <img src={logo1} alt="SVC Logo" className="h-5 w-auto sm:h-10 hover:scale-110 transition-transform duration-300" />
+          <img src={logo2} alt="IEEE Logo" className="h-5 w-auto sm:h-10 hover:scale-110 transition-transform duration-300" />
+        </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-12">
-          <li><Link to="/" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Home</Link></li>
-          <li><Link to="/about" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">About</Link></li>
-          <li><Link to="/execom" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Execom</Link></li>
-          <li><Link to="/events" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Events</Link></li>
-          <li><Link to="/achievements" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Achievements</Link></li>
-          <li><Link to="/magazine" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Magazine</Link></li>
-          <li><Link to="/contact" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Contact</Link></li>
+        <ul className="hidden md:flex space-x-1">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <Link 
+                to={link.path} 
+                className="relative px-3 py-2 text-white text-sm font-medium group"
+              >
+                {link.name}
+                <span className="absolute bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Mobile Menu Button */}
@@ -32,7 +59,7 @@ const Navbar: React.FC = () => {
           className="md:hidden focus:outline-none"
           aria-label="Toggle Menu"
         >
-          <svg className="w-6 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-8 text-white hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -42,17 +69,23 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu - FIXED PATHS */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <ul className="md:hidden mt-4 space-y-4 px-2">
-          <li><Link to="/home" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Home</Link></li>
-          <li><Link to="/about" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>About</Link></li>
-          <li><Link to="/execom" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Execom</Link></li>
-          <li><Link to="/events" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Events</Link></li>
-          <li><Link to="/achievements" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Achievements</Link></li>
-          <li><Link to="/magazine" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Magazine</Link></li>
-          <li><Link to="/contact" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Contact</Link></li>
-        </ul>
+        <div className="md:hidden bg-gradient-to-b from-slate-950 via-blue-950 to-slate-950 border-t border-blue-800">
+          <ul className="space-y-1 px-6 py-4">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link 
+                  to={link.path} 
+                  className="block px-3 py-3 text-white hover:text-cyan-400 hover:bg-blue-900/50 rounded-lg transition-all duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </nav>
   );
